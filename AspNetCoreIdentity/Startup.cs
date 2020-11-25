@@ -28,6 +28,13 @@ namespace AspNetCoreIdentity
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<AspNetCoreIdentityContext>();
 
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("PodeTestar", policy => policy.RequireClaim("PodeTestar"));
+                options.AddPolicy("PodeAcessar", policy => policy.RequireClaim("PodeAcessar"));
+            });
+
+
             services.AddControllersWithViews();
         }
 

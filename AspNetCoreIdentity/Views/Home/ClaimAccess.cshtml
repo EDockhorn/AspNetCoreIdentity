@@ -1,0 +1,19 @@
+﻿@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService AuthorizationService
+
+@{
+    ViewData["Title"] = "Claim Access Test!";
+}
+<h1>@ViewData["Title"]</h1>
+
+
+@if ((await AuthorizationService.AuthorizeAsync(User, "PodeTestar")).Succeeded)
+{
+    <a href="#" class="btn btn-light">Acessar!!</a>
+}
+
+@if ((await AuthorizationService.AuthorizeAsync(User, "PodeTestar")).Succeeded)
+{
+    <a href="#" class="btn btn-danger">Excluir!!</a>
+}
+
