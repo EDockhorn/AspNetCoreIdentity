@@ -13,15 +13,12 @@ namespace AspNetCoreIdentity
 
         public Startup(IHostEnvironment hostEnvironment)
         {
-            var builder = new ConfigurationBuilder()
+            Configuration = new ConfigurationBuilder()
                 .SetBasePath(hostEnvironment.ContentRootPath)
                 .AddJsonFile("appsettings.json", true, true)
                 .AddJsonFile($"appsettings.{hostEnvironment.EnvironmentName}.json", true, true)
-                .AddEnvironmentVariables();
-
-            if (hostEnvironment.IsProduction()) builder.AddUserSecrets<Startup>();
-            
-            Configuration = builder.Build();
+                .AddEnvironmentVariables()
+                .AddUserSecrets<Startup>().Build();
         }
 
         public void ConfigureServices(IServiceCollection services)
