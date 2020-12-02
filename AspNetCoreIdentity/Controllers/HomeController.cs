@@ -27,9 +27,19 @@ namespace AspNetCoreIdentity.Controllers
 
         public IActionResult Privacy()
         {
-            return View();
+
+            try
+            {
+                throw new Exception("Erro");
+                return View();
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index", "Error", new { id = 500 });
+            }
+
         }
-        [Authorize(Roles ="Admin")]
+        [Authorize(Roles = "Admin")]
         public IActionResult Secret()
         {
             return View();
@@ -50,13 +60,6 @@ namespace AspNetCoreIdentity.Controllers
         public IActionResult ClaimAccess()
         {
             return View();
-        }
-
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }

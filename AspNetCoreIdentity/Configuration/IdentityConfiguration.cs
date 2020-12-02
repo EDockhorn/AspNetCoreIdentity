@@ -13,9 +13,11 @@ namespace AspNetCoreIdentity.Configuration
             services.AddDbContext<AspNetCoreIdentityContext>(options =>
                     options.UseSqlServer(configuration.GetConnectionString("AspNetCoreIdentityContextConnection")));
 
+
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<AspNetCoreIdentityContext>();
+
 
             services.AddAuthorization(options =>
             {

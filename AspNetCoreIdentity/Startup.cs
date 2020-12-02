@@ -18,6 +18,7 @@ namespace AspNetCoreIdentity
                 .AddJsonFile("appsettings.json", true, true)
                 .AddJsonFile($"appsettings.{hostEnvironment.EnvironmentName}.json", true, true)
                 .AddEnvironmentVariables()
+
                 .AddUserSecrets<Startup>().Build();
         }
 
@@ -35,7 +36,8 @@ namespace AspNetCoreIdentity
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Error/Index");
+                app.UseStatusCodePagesWithRedirects("/Error/Index/{0}");
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
