@@ -36,8 +36,8 @@ namespace AspNetCoreIdentity
             }
             else
             {
-                app.UseExceptionHandler("/Error/Index");
-                app.UseStatusCodePagesWithRedirects("/Error/Index/{0}");
+                app.UseExceptionHandler("/erro");
+                app.UseStatusCodePagesWithRedirects("/erro/{0}");
                 app.UseHsts();
             }
             app.UseHttpsRedirection();

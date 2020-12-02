@@ -5,6 +5,7 @@ namespace AspNetCoreIdentity.Controllers
 {
     public class ErrorController : Controller
     {
+        [Route("erro/{id?}")]
         public IActionResult Index(int id)
         {
             var modelErro = new ErrorViewModel();
