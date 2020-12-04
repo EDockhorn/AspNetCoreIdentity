@@ -1,3 +1,4 @@
+using KissLog.AspNetCore;
 using AspNetCoreIdentity.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -26,6 +27,8 @@ namespace AspNetCoreIdentity
         {
             services.ResolveIdentityConfigure(Configuration);
             services.AddControllersWithViews();
+
+            services.ResolveDependecies();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -47,6 +50,11 @@ namespace AspNetCoreIdentity
 
             app.UseAuthentication();
             app.UseAuthorization();
+            
+            // app.UseKissLogMiddleware() must to be referenced after app.UseAuthentication(), app.UseSession()
+            app.UseKissLogMiddleware(options => {
+                LogConfiguration.ConfigureKissLog(options, Configuration);
+            });
 
             app.UseEndpoints(endpoints =>
             {
