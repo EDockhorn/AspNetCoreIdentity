@@ -30,7 +30,6 @@ namespace AspNetCoreIdentity.Configuration
                     return sb.ToString();
                 });
 
-            // KissLog internal logs
             options.InternalLog = (message) => Debug.WriteLine(message);
 
             LogConfiguration.RegisterKissLogListeners(options, configuration);
